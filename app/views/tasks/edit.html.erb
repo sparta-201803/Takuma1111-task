@@ -2,7 +2,7 @@
 
 <% if flash["alert"].present? %>
   <% flash["alert"].each do |value| %>
-    <%= content_tag(:div, value)%>
+      <%= content_tag(:div, value)%>
     <% end %>
   <%end%>
 
@@ -20,4 +20,5 @@
   <%= form.submit "更新" %>
 
 <% end %>
+
    <%= link_to "戻る", task_path(@task)%>

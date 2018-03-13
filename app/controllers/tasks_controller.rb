@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
-  def index
-    puts "called TasksController#index"
 
+  before_action :new
+
+  def index
     @tasks = Task.all
-    @task = Task.new
   end
 
   def show
@@ -15,16 +15,13 @@ class TasksController < ApplicationController
   end
 
   def create
-    puts "called TasksController#create"
-
     @task = Task.new(task_params)
     if @task.save
-    redirect_to tasks_path
+      redirect_to tasks_path
     else
-    flash.now[:alert] =@task.errors.full_messages
-
-    @tasks =  Task.all
-    render :index
+      flash.now[:alert] =@task.errors.full_messages
+      @tasks =  Task.all
+      render :index
    end
   end
 
@@ -35,10 +32,10 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-    redirect_to tasks_path
+      redirect_to tasks_path
     else
-    flash.now[:alert] = @task.errors.full_messages
-    render :index
+      flash.now[:alert] = @task.errors.full_messages
+      render :index
    end
   end
 
