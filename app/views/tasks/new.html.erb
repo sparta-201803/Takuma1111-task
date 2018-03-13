@@ -1,0 +1,25 @@
+<h1>タスク登録_new</h1>
+
+<ul>
+  <% if flash["alert"].present? %>
+    <font color= "red">【エラー内容】<br>
+    <% flash["alert"].each do |value| %>
+      <li><%= content_tag(:div, value)%></li>
+      <% end %>
+    <%end%>
+  </font><br>
+</ul>
+
+  <%= form_with model: @task, local: true do |form| %>
+    <p>
+      タイトル<br>
+      <%= form.text_field :title %>
+    </p>
+
+    <p>
+      内容<br>
+      <%= form.text_area :body %>
+    </p>
+
+    <%= form.submit "登録" %>
+  <% end %>
